@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
+// import logo from './logo.svg';
 import './App.css';
+import Jumbotron from './components/Jumbotron/Jumbotron';
 
 class App extends Component {
 
@@ -9,7 +13,11 @@ class App extends Component {
   // handle communicating with express server
   //////////////////////////////////////////////
   state = {
-    response: ''
+    response: "",
+    appName: "New York Times Search",
+    appSubtitle: "",
+    appIcon: "far fa-newspaper",
+    copyrightYear: "2018"
   };
 
   componentDidMount() {
@@ -32,8 +40,8 @@ class App extends Component {
   /////////////////////////
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="App container">
+        {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -46,8 +54,21 @@ class App extends Component {
           >
             Learn React
           </a>
-        </header>
+        </header> */}
         <p className="App-intro">{this.state.response}</p>
+        <Jumbotron
+          title={this.state.appName}
+          titleicon={this.state.appIcon}
+          message={this.state.appSubtitle}
+        >
+        </Jumbotron>
+        <Home>  
+          
+        </Home>
+        <Footer
+          year={this.state.copyrightYear}
+        >
+        </Footer>
       </div>
     );
   }

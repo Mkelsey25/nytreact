@@ -12,21 +12,21 @@ var ArticleSchema = new Schema({
     unique: true,
     required: "Article name is required"
   },
-  summary: {
-    type: String,
-    trim: true,
-    required: "Summary is required"
+  date: {
+    type: Date,
+    default: Date.now
   },
   url: {
     type: String,
     trim: true
   },
+  summary: {
+    type: String,
+    trim: true,
+    required: "Summary is required"
+  },
   author: {
     type: String
-  },
-  date: {
-    type: Date,
-    default: Date.now
   },
   comments: [{
     type: Schema.Types.ObjectId,

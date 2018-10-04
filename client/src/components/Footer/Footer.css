@@ -1,0 +1,14 @@
+
+.sticky {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  background-color: #f4f4f4;
+  color: #1D2731;
+  padding: 0px;
+
+  position:fixed;    /*Here's what sticks it*/
+  bottom:0;          /*to the bottom */
+  left:0;            /*and left of the body.*/
+}

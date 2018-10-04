@@ -21,11 +21,11 @@ To get a development environment up and running, clone the repository locally.
 
 ## Running tests
 
-Testing was done by TBD.
+Testing was done by performing the basic workflows through the app.
 
 ## Deployment
 
-The project is deployed to Heroku at TBD
+The project is deployed to Heroku at https://dashboard.heroku.com/apps/nytreact-jc
 
 ## Built With
 
@@ -45,7 +45,7 @@ This is version 0.1
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+TBD
 
 ## Acknowledgments
 
