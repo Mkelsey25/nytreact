@@ -1,12 +1,13 @@
-# NYTTeact
+# NYTReact
 
+NY Times React is a React-based rendition of the New York Times Article Search application.  It involves creating React components, working with helper/util functions, and utilizing the React mounting lifecycle to query and display articles based on user searches. It uses use Node, Express and MongoDB so that users can save articles to read later.
 
 **Problem it solves:** \
-TBD. \
+NYTReact allows users to easily search for NY Times articles and save them to be read later. \
 **How solved:** \
-TBD. \
+The app queries for articles published by the NY Times and save them to a MongoDB datastore such that they can be earmarked for later reading. \
 **Technical approach:** \
-The project leverages React to ....
+The project leverages React to componentize and for optimal performance.  Express is used to route requests and call methods to store to MongoDB.
 
 ## Getting Started
  
