@@ -39,7 +39,7 @@ module.exports = function(app) {
 
       ////////////////////////////////////////////////////////////////////////////////////////
       // for each article
-      //   * Headline - the title of the article
+      //   * title - the title of the article
       //   * Summary - a short summary of the article
       //   * URL - the url to the original article
       //   * Feel free to add more content to your database (photos, bylines, and so on).
@@ -49,8 +49,8 @@ module.exports = function(app) {
       // (i: iterator. element: the current element)
       $(".article--post").each(function(i, element) {
 
-          // Save the text of the "article--post__title" class element in a "headline" variable
-          var headline = $(element).find(".article--post__title").text();
+          // Save the text of the "article--post__title" class element in a "title" variable
+          var title = $(element).find(".article--post__title").text();
 
           // In the currently selected element, look at its child elements (i.e., its p-tags with a class "article--post__teaser"),
           // then filter for any text elements that are contents and save it to the "summary" variable
@@ -62,17 +62,17 @@ module.exports = function(app) {
 
           // use cheerio to scrape the html and get the author, url and date of the article
           var author = $(element).find("div.author__image").children("div").data('alt');
-          var urlLink = $(element).find(".article--post__title").children().attr("href");
+          var url = $(element).find(".article--post__title").children().attr("href");
           var date = $(element).find(".article--post__teaser time").attr("datetime");
 
-          // If this found element had both a headline and a link
-          if (headline && urlLink) {
+          // If this found element had both a title and a link
+          if (title && url) {
 
             // save the results in an object that we'll push into the results array that we defined earlier
             results.push({
-              headline: headline,
+              title: title,
               summary: summary.trim(),
-              urlLink: SMASHING_MAGAZINE_URL + urlLink,
+              url: SMASHING_MAGAZINE_URL + url,
               author: author,
               date: date
             });
@@ -85,9 +85,9 @@ module.exports = function(app) {
 
             // Save a new Example using the data object
             // db.Article.create({
-            //   headline: headline,
+            //   title: title,
             //   summary: summary.trim(),
-            //   urlLink: SMASHING_MAGAZINE_URL + urlLink,
+            //   url: SMASHING_MAGAZINE_URL + url,
             //   author: author,
             //   date: date
             // })
@@ -138,9 +138,9 @@ module.exports = function(app) {
       var newArticleList = [];
 
       articleList.forEach((item, index) => {
-        console.log("Finding: " + item.headline);
+        console.log("Finding: " + item.title);
 
-        db.Article.find({headline: item.headline.trim()})
+        db.Article.find({title: item.title.trim()})
           .then(function(dbResult){
             console.log(dbResult);
 
@@ -157,9 +157,9 @@ module.exports = function(app) {
 
             // Save a new Example using the data object
             db.Article.create({
-              headline: item.headline,
+              title: item.title,
               summary: item.summary.trim(),
-              urlLink: item.urlLink,  // website url has aleady been appended at this point
+              url: item.url,  // website url has aleady been appended at this point
               author: item.author,
               date: item.date
             })

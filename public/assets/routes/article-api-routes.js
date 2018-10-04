@@ -124,9 +124,9 @@ module.exports = function(app) {
 
     // Save a new Example using the data object
     db.Article.create({
-      headline: req.body.headline,
+      title: req.body.title,
       summary: req.body.summary.trim(),
-      urlLink: req.body.urlLink,
+      url: req.body.url,
       author: req.body.author,
       date: req.body.date
     })
@@ -170,7 +170,7 @@ module.exports = function(app) {
           const response = {
             message: "Article successfully deleted",
             id: dbResult._id,
-            headline: dbResult.headline,
+            title: dbResult.title,
             comments: dbResult.comments
           };
 

@@ -6,7 +6,7 @@ var db = require("./../models");
 
 // Using the Schema constructor, create a new ArticleSchema object
 var ArticleSchema = new Schema({
-  headline: {
+  title: {
     type: String,
     trim: true,
     unique: true,
@@ -17,7 +17,7 @@ var ArticleSchema = new Schema({
     trim: true,
     required: "Summary is required"
   },
-  urlLink: {
+  url: {
     type: String,
     trim: true
   },
