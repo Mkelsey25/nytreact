@@ -7,7 +7,6 @@
 const cheerio = require("cheerio");
 const request = require("request");
 const db = require("./../../../models");
-const LOAD_FROM_SCRAPE = false;
 
 const SMASHING_MAGAZINE_URL = "https://www.smashingmagazine.com";
 
@@ -120,6 +119,8 @@ module.exports = function(app) {
 
   // GET root route
   app.get("/", function(req, res) {
+    console.log("in the root route");
+    
     // show all of the existing content along with the comments
     res.redirect("/api/articles");
   });
@@ -157,7 +158,7 @@ module.exports = function(app) {
 
             // Save a new Example using the data object
             db.Article.create({
-              title: item.title,
+              title: item.title.trim(),
               summary: item.summary.trim(),
               url: item.url,  // website url has aleady been appended at this point
               author: item.author,
@@ -183,12 +184,14 @@ module.exports = function(app) {
       });
         
       // send the new article list to handlebars
-      var hbsObject = {
-        articles: newArticleList,
-        isScraping: true
-      };
-      res.render("index", hbsObject);   
+      // var hbsObject = {
+      //   articles: newArticleList,
+      //   isScraping: true
+      // };
+      // res.render("index", hbsObject);   
     
+      res.send(dbResult);
+
       // END SCRAPESITE
     });
 

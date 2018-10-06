@@ -5,67 +5,23 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Requiring our models
-var db = require("./../../../models");
-var routeCalled = 0;
+const db = require("./../../../models");
+let routeCalled = 0;
 
 /////////////////
 // Routes
 /////////////////
 module.exports = function(app) {
 
-  ///////////////////////////////////////////////////////////////////////////
-  // ARTICLE GET route - get all articles (comments as array of ids)
-  ///////////////////////////////////////////////////////////////////////////
-  app.get("/api/articlesX", function(req, res) {
-
-    console.log("route: all articlesX");
-    // console.log(JSON.stringify(req.body));
-
-    //find all articles
-    db.Article.find({})
-      .then(function(dbResult) {
-        // res.send(dbResult);
-
-        // send to handlebars
-        var hbsObject = {
-          articles: dbResult
-        };
-        res.render("index", hbsObject);       
-      })
-      .catch(function(err) {
-        // If an error occurs, log the error message
-        console.log(err.message);
-      });
-   
-  });
-
-  /////////////////////////////////////////////////////////////////////////////
-  // ARTICLE GET route - retrieve 1 article (comments as array of ids)
-  /////////////////////////////////////////////////////////////////////////////
-  app.get("/api/articlesX/:id", function(req, res) {
-
-    console.log("route: specific articleX");
-    // console.log(JSON.stringify(req.body));
-
-    db.Article.findById(req.params.id, function(err, article) {})
-      .then(function(dbResult) {
-        // res.send(dbResult);
-
-        // send to handlebars
-        var hbsArticle = {
-          articles: dbResult
-        };
-        // console.log(dbResult);
-        res.render("index", hbsArticle); 
-      });
-  });
+  routeCalled += 1;
+  // console.log("route called: " + app.router.getCurrentPathname());
+  console.log("route call count: " + routeCalled);
 
   ///////////////////////////////////////////////////////////////////////////
   // ARTICLE GET route - get all articles (comments as objects)
   ///////////////////////////////////////////////////////////////////////////
   app.get("/api/articles", function(req, res) {
 
-    routeCalled += 1;
     console.log("route: all articles");
     // console.log(JSON.stringify(req.body));
     console.log('routeCalled', routeCalled);
@@ -77,13 +33,8 @@ module.exports = function(app) {
       exec(function (err, dbResult) {
         if (err) return handleError(err);
         console.log(dbResult);
-        // console.log('The author is %s', dbResult[0].comments.userName);
-        // console.log('The comment is %s', dbResult[0].comments.comment);
-        // send to handlebars
-        var hbsObject = {
-          articles: dbResult
-        };
-        res.render("index", hbsObject);       
+     
+        res.send(dbResult);
       });
 
   });
@@ -103,13 +54,8 @@ module.exports = function(app) {
       exec(function (err, dbResult) {
         if (err) return handleError(err);
         console.log(dbResult);
-        // console.log('The author is %s', dbResult[0].comments.userName);
-        // console.log('The comment is %s', dbResult[0].comments.comment);
-        // send to handlebars
-        var hbsObject = {
-          articles: dbResult
-        };
-        res.render("index", hbsObject);       
+        
+        res.send(dbResult);
       });
     
   });

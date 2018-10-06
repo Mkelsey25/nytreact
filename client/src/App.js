@@ -8,7 +8,6 @@ import Jumbotron from './components/Jumbotron/Jumbotron';
 
 class App extends Component {
 
-  
   //////////////////////////////////////////////
   // handle communicating with express server
   //////////////////////////////////////////////
@@ -21,23 +20,29 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.callApi()
+    this.callApi('articles')
       .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.toJSON()));
   }
 
-  callApi = async () => {
-    const response = await fetch('/api/hello');
+  callApi = async (routePath) => {
+    const response = await fetch('/api/' + routePath);
     const body = await response.json();
 
+    // await fetch('/api/')
+    //   // .then(res => res.json()) // comment this out for now
+    //   .then(res => res.text())          // convert to plain text
+    //   .then(text => console.log(text))  // then log it out
+
+    console.log(body);
     if (response.status !== 200) throw Error(body.message);
 
     return body;
   };
 
-  /////////////////////////
-  //
-  /////////////////////////
+  /////////////////////////////
+  // render the application
+  /////////////////////////////
   render() {
     return (
       <div className="App container">
@@ -55,7 +60,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home}/>
             {/* both /articles and /articles/:id begin with /roster */}
-            <Route path='/articles' component={Saved}/>
+            <Route path='/api/articles' component={Saved}/>
           </Switch>
         </Router>
 
