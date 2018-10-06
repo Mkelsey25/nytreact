@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Saved from "./components/Saved";
+import SearchCard from "./components/SearchCard";
 import Footer from "./components/Footer";
 import './App.css';
 import Jumbotron from './components/Jumbotron/Jumbotron';
@@ -22,7 +23,7 @@ class App extends Component {
   componentDidMount() {
     this.callApi('articles')
       .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err.toJSON()));
+      .catch(err => console.log(err));
   }
 
   callApi = async (routePath) => {
@@ -53,8 +54,9 @@ class App extends Component {
           title={this.state.appName}
           titleicon={this.state.appIcon}
           message={this.state.appSubtitle}
-        >
-        </Jumbotron>
+        ></Jumbotron>
+
+        <SearchCard></SearchCard>
 
         <Router>
           <Switch>
@@ -66,8 +68,7 @@ class App extends Component {
 
         <Footer
           year={this.state.copyrightYear}
-        >
-        </Footer>
+        ></Footer>
       </div>
     );
   }

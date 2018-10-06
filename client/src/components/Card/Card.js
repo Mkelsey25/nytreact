@@ -4,7 +4,7 @@ import Wrapper from "../Wrapper";
 import CardBtn from "../CardBtn";
 import "./Card.css";
 
-// TODO need to convert this to be a component to handle state
+// load up a series of button definitions
 const ArticleButtons = [
   {
     "id": 1,
@@ -40,30 +40,28 @@ class Card extends Component {
   render() {
     return (
 
-      // const Card = props => (
-        <div
-          className="card"
-          // style={{
-          //   backgroundImage: props.image ? `url(${props.image})` : "none"
-          // }}
-        >
-          {!this.props.image && <i className="fas fa-book-open" aria-hidden="true" />}
-          
-          <Wrapper>
-            {this.state.articleButtons.map(articleBtn => (
-              <CardBtn
-                id={articleBtn.id}
-                key={articleBtn.id}
-                data-value={articleBtn.datavalue}
-                title={articleBtn.title}
-                icon={articleBtn.icon}
-                // style={{ opacity: props.image ? 1 : 0 }}
-                onClick={this.props.handleBtnClick}
-              />
-            ))}
-          </Wrapper>
-        </div>
-      // );
+      <div
+        className="card article-card"
+        // style={{
+        //   backgroundImage: props.image ? `url(${props.image})` : "none"
+        // }}
+      >
+        {!this.props.image && <i className="fas fa-book-open" aria-hidden="true" />}
+        
+        <Wrapper>
+          {this.state.articleButtons.map(articleBtn => (
+            <CardBtn
+              id={articleBtn.id}
+              key={articleBtn.id}
+              data-value={articleBtn.datavalue}
+              title={articleBtn.title}
+              icon={articleBtn.icon}
+              // style={{ opacity: props.image ? 1 : 0 }}
+              onClick={this.props.handleBtnClick}
+            />
+          ))}
+        </Wrapper>
+      </div>
 
     )
   }
